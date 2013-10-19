@@ -1,3 +1,6 @@
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 "Automagically use same vimrc allover the place by creating symbolic link
 "set runtimepath^=~/Dropbox/vim
 "source ~/Dropbox/vim/vimrc.vim
