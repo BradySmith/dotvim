@@ -69,8 +69,15 @@ endfunction
 :iabbrev maxssig Max Gooding, mag501, 11087688
 :iabbrev teh the
 
+"Colorscheme
+syntax enable
+let g:solarized_termtrans=1
+let g:solarized_termcolors=16
+set background=dark
+
+colorscheme solarized             " Load a colorscheme
+
 "General Options
-colorscheme elflord
 set tw=80                                       
 set nu
 set cc=80                                   
