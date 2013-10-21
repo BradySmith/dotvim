@@ -81,3 +81,9 @@ set tw=80
 set nu
 set cc=80                                   
 set autoindent 
+set spell
+
+"Search options
+set ic
+set smartcase
+set incsearch
