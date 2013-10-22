@@ -87,3 +87,4 @@ set spell
 set ic
 set smartcase
 set incsearch
+autocmd VimEnter * NERDTree
