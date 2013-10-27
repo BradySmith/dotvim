@@ -7,3 +7,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree
+[submodule "vim-pipe"]
+	path = vim-pipe
+	url = http://github.com/krisajenkins/vim-pipe
