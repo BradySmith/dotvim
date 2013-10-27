@@ -66,24 +66,6 @@ noremap <c-u> viwU
 :nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 :nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
-"Use TAB to complete when typing words, else inserts TABs as usual.
-"Uses dictionary and source files to find matching words to complete.
-
-"See help completion for source,
-"Note: usual completion is on <C-n> but more trouble to press all the time.
-"Never type the same word twice and maybe learn a new spellings!
-"Use the Linux dictionary when spelling is in doubt.
-"Window users can copy the file to their machine.
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-:inoremap <leader>, <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
-
 :inoremap jk <esc>
 :inoremap <esc> <NOP>
 :noremap <Up> <NOP>
@@ -120,3 +102,8 @@ autocmd FileType sql let b:vimpipe_command="psql mydb"
 nnoremap <Leader>u :GundoToggle<CR>
 
 :set splitright
+
+:au BufNewFile,BufRead,BufEnter *.sql	set nospell
+
+"Set it up so that supertab and snipmate work together
+let g:SuperTabDefaultCompletionType = "context"
