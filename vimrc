@@ -20,6 +20,28 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+
+"Set Directories for backups
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+if isdirectory($HOME . '/.vim-backup') == 0
+  :silent !mkdir -p ~/.vim-backup >/dev/null 2>&1
+endif
+set backupdir^=./.vim-backup/
+
+" Save your swp files to a less annoying place than the current directory.
+if isdirectory($HOME . '/.vim-swap') == 0
+  :silent !mkdir -p ~/.vim-swap >/dev/null 2>&1
+endif
+set directory=./.vim-swap//
+
+" undofile - This allows you to use undos after exiting and restarting
+if isdirectory($HOME . '/.vim-undo') == 0
+  :silent !mkdir -p ~/.vim-undo > /dev/null 2>&1
+endif
+set undodir=./.vim-undo//
+
 " Set paste toggle to F3
 set pastetoggle=<F3>
 
@@ -94,3 +116,7 @@ set incsearch
 
 "Have it so we can run sql files on mydb at home
 autocmd FileType sql let b:vimpipe_command="psql mydb"
+
+nnoremap <Leader>u :GundoToggle<CR>
+
+
