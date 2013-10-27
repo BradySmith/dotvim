@@ -28,19 +28,19 @@ set undofile
 if isdirectory($HOME . '/.vim-backup') == 0
   :silent !mkdir -p ~/.vim-backup >/dev/null 2>&1
 endif
-set backupdir^=./.vim-backup/
+set backupdir=~/.vim-backup/
 
 " Save your swp files to a less annoying place than the current directory.
 if isdirectory($HOME . '/.vim-swap') == 0
   :silent !mkdir -p ~/.vim-swap >/dev/null 2>&1
 endif
-set directory=./.vim-swap//
+set directory=~/.vim-swap//
 
 " undofile - This allows you to use undos after exiting and restarting
 if isdirectory($HOME . '/.vim-undo') == 0
   :silent !mkdir -p ~/.vim-undo > /dev/null 2>&1
 endif
-set undodir=./.vim-undo//
+set undodir=~/.vim-undo//
 
 " Set paste toggle to F3
 set pastetoggle=<F3>
@@ -81,7 +81,7 @@ function! Tab_Or_Complete()
     return "\<Tab>"
   endif
 endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+:inoremap <leader>, <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
 :inoremap jk <esc>
@@ -119,4 +119,4 @@ autocmd FileType sql let b:vimpipe_command="psql mydb"
 
 nnoremap <Leader>u :GundoToggle<CR>
 
-
+:set splitright

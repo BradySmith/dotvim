@@ -1,0 +1,13 @@
+snippet dtie
+	DROP TABLE ${1:tablename} IF EXISTS;
+
+snippet dvie
+	DROP VIEW ${1:viewname} IF EXISTS;
+
+snippet ddie
+	DROP DOMAIN ${1:domainname} IF EXIST;
+
+snippet ctfw
+	CREATE TABLE ${1:tablename}
+	FROM ${2:tablename}
+	WHERE ${3:att1}
