@@ -40,6 +40,10 @@ noremap <c-u> viwU
 "Remap @ to leader a for faster macro access
 :noremap <leader>a @
 
+"Resize windows using the + or - buttons
+:nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+:nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
 
@@ -87,4 +91,6 @@ set spell
 set ic
 set smartcase
 set incsearch
-autocmd VimEnter * NERDTree
+
+"Have it so we can run sql files on mydb at home
+autocmd FileType sql let b:vimpipe_command="psql mydb"
