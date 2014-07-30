@@ -80,16 +80,15 @@ noremap <c-u> viwU
 "Colorscheme
 syntax enable
 let g:solarized_termtrans=1
-let g:solarized_termcolors=16
+let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 set background=dark
-colorscheme solarized             " Load a colorscheme
+colorscheme nucolor             " Load a colorscheme
 
 "General Options
-set tw=80                                       
 set nu
-set cc=80                                   
 set autoindent 
-set spell
 
 "Search options
 set ic
