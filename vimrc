@@ -100,9 +100,14 @@ autocmd FileType sql let b:vimpipe_command="psql mydb"
 
 nnoremap <Leader>u :GundoToggle<CR>
 
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
 :set splitright
 
 :au BufNewFile,BufRead,BufEnter *.sql	set nospell
 
 "Set it up so that supertab and snipmate work together
 let g:SuperTabDefaultCompletionType = "context"
+
+
