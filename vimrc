@@ -9,7 +9,7 @@ source ~/.vim/scripts/closetag.vim
 :fixdel
 :let mapleader = ","
 
-:nnoremap <leader>ev :vsplit ~/.vim/vimrc<CR>
+:nnoremap <leader>ev :split ~/.vim/vimrc<CR>
 :nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 " Commenting blocks of code.
@@ -22,6 +22,8 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+
+:command W w
 
 "Set Directories for backups
 " tell it to use an undo file
@@ -65,8 +67,8 @@ noremap <c-u> viwU
 :noremap <leader>a @
 
 "Resize windows using the + or - buttons
-:nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-:nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+:nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
+:nnoremap <silent> <leader>= :exe "resize " . (winheight(0) * 2/3)<CR>
 
 :inoremap jk <esc>
 :inoremap <esc> <NOP>
