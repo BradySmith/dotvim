@@ -1,6 +1,8 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+source ~/.vim/scripts/closetag.vim
+
 "Automagically use same vimrc allover the place by creating symbolic link
 "set runtimepath^=~/Dropbox/vim
 "source ~/Dropbox/vim/vimrc.vim
@@ -74,7 +76,6 @@ noremap <c-u> viwU
 :noremap <Right> <NOP>
 
 :iabbrev ssig Brady Smith, bas453, 11135973 
-:iabbrev maxssig Max Gooding, mag501, 11087688
 :iabbrev teh the
 
 "Colorscheme
@@ -84,19 +85,20 @@ let g:solarized_termcolors=256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 set background=dark
-colorscheme nucolor             " Load a colorscheme
+colorscheme heroku             " Load a colorscheme
 
 "General Options
 set nu
 set autoindent 
+set tabstop=4
+set smartindent
+set tabstop=4
+set linespace=3
 
-"Search options
 set ic
 set smartcase
 set incsearch
 
-"Have it so we can run sql files on mydb at home
-autocmd FileType sql let b:vimpipe_command="psql mydb"
 
 nnoremap <Leader>u :GundoToggle<CR>
 
@@ -105,9 +107,9 @@ set omnifunc=syntaxcomplete#Complete
 
 :set splitright
 
-:au BufNewFile,BufRead,BufEnter *.sql	set nospell
-
 "Set it up so that supertab and snipmate work together
 let g:SuperTabDefaultCompletionType = "context"
+let g:closetag_html_style=1
 
-
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
