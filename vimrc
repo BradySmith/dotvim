@@ -8,6 +8,9 @@ source ~/.vim/scripts/closetag.vim
 "source ~/Dropbox/vim/vimrc.vim
 :fixdel
 
+"Suck it Vimophiles
+:set mouse=a
+
 nnoremap <SPACE> <Nop>
 :let mapleader = " "
 
@@ -111,6 +114,13 @@ set incsearch
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>o :CtrlP<CR>
 
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+
+
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
@@ -119,9 +129,18 @@ set omnifunc=syntaxcomplete#Complete
 "Set it up so that supertab and snipmate work together
 let g:SuperTabDefaultCompletionType = "context"
 let g:closetag_html_style=1
-
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set laststatus=2
+let g:Powerline_mode_V="V·LINE"
+let g:Powerline_mode_cv="V·BLOCK"
+let g:Powerline_mode_S="S·LINE"
+let g:Powerline_mode_cs="S·BLOCK"
+
