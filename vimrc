@@ -7,10 +7,12 @@ source ~/.vim/scripts/closetag.vim
 "set runtimepath^=~/Dropbox/vim
 "source ~/Dropbox/vim/vimrc.vim
 :fixdel
-:let mapleader = ","
+
+nnoremap <SPACE> <Nop>
+:let mapleader = " "
 
 :nnoremap <leader>ev :split ~/.vim/vimrc<CR>
-:nnoremap <leader>sv :source ~/.vim/vimrc<cr>
+:nnoremap <leader>sv :source ~/.vim/vimrc<CR>
 
 " Commenting blocks of code.
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -22,12 +24,14 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
-
-:command W w
+" Stupid mispellings
+:ca X x
+:ca W w
 
 "Set Directories for backups
 " tell it to use an undo file
 set undofile
+
 " set a directory to store the undo history
 if isdirectory($HOME . '/.vim-backup') == 0
   :silent !mkdir -p ~/.vim-backup >/dev/null 2>&1
@@ -63,8 +67,10 @@ noremap <c-u> viwU
 :noremap <leader>u yyp<c-v>$r-
 :noremap <leader>U yyp<c-v>$r=
 
-"Remap @ to leader a for faster macro access
+"Faster leader shortcuts
 :noremap <leader>a @
+:noremap <leader>w :w<CR>
+nmap <Leader><Leader> V
 
 "Resize windows using the + or - buttons
 :nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -101,8 +107,9 @@ set ic
 set smartcase
 set incsearch
 
-
+" Plugin specific mappings
 nnoremap <Leader>u :GundoToggle<CR>
+nnoremap <Leader>o :CtrlP<CR>
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -112,6 +119,9 @@ set omnifunc=syntaxcomplete#Complete
 "Set it up so that supertab and snipmate work together
 let g:SuperTabDefaultCompletionType = "context"
 let g:closetag_html_style=1
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
