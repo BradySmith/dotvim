@@ -144,3 +144,5 @@ let g:Powerline_mode_cv="V·BLOCK"
 let g:Powerline_mode_S="S·LINE"
 let g:Powerline_mode_cs="S·BLOCK"
 
+hi Visual term=reverse cterm=reverse guibg=Grey
+
