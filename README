@@ -22,5 +22,3 @@ To install a new plugin as a submodule, using the fugitive plugin as an example
 	git submodule add http://github.com/tpope/vim-fugitive.git bundle/fugitive
 	git add .
 	git commit -m "Install Fugitive.vim bundle as a submodule."
-
-stuff
