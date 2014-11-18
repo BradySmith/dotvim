@@ -8,7 +8,7 @@ source ~/.vim/scripts/closetag.vim
 "source ~/Dropbox/vim/vimrc.vim
 :fixdel
 
-"Suck it Vimophiles.
+"Suck it Vimophiles
 :set mouse=a
 
 nnoremap <SPACE> <Nop>
