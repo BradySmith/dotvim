@@ -4,6 +4,10 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
+Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -33,13 +37,15 @@ syntax on
 nnoremap <SPACE> <Nop>
 :let mapleader = " "
 
-" Color Settings
-" ==============
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-colorscheme solarized
+" Color Scheme.
+" ============
+let g:jellybeans_background_color_256 = 234
+colorscheme jellybeans
+"hi Search term=reverse cterm=reverse gui=reverse ctermfg=109
+highlight clear SignColumn
+highlight clear LineNr
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 " General Settings
 " ================
@@ -53,6 +59,10 @@ set backspace=indent,eol,start  " fix backspace
 set number
 set history=1000
 set nospell
+set clipboard=unnamed
+
+
+
 
 "Get rid of annoying Press Enter or type command to continue...
 let g:bufferline_echo=0
@@ -113,6 +123,8 @@ noremap <c-u> viwU
 :noremap <leader>w :w<CR>
 nmap <Leader><Leader> V
 
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+
 "File specific settings
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -172,9 +184,46 @@ set undodir=~/.vim-undo//
 :ca W w
 :iabbrev teh the
 
+" Cleans up trailing whitespace.
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position.
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 " Plugin Specific Stuff
 " =====================
+
+" Airline
+let g:bufferline_echo = 0
+let g:airline_section_c = '%f'
+let g:airline_theme = 'jellybeans'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" CtrlP should us `ag`.
+if executable('ag')
+    " Use ag over grep.
+    set grepprg=ag\ --nogroup\ --nocolor
+ 
+    " Use ag in CtrlP for listing files. Lightning fast and
+    " respects .gitignore.
+    let g:ctrlp_user_command = 'ag -i %s -l --nocolor --nogroup -g ""'
+ 
+    " ag is fast enough that CtrlP doesn't need to cache.
+    let g:ctrlp_use_caching = 0
+endif
+
+
 let g:autoclose_vim_commentmode = 1
 let g:indent_guides_enable_on_vim_startup = 0
 let g:vdebug_options = {
