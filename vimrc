@@ -4,16 +4,11 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
-Plugin 'mbbill/undotree'
-Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'honza/vim-snippets'
 Plugin 'spf13/PIV'
 Plugin 'arnaud-lb/vim-php-namespace'
@@ -22,11 +17,12 @@ Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-haml'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mattn/emmet-vim'
-Plugin 'spf13/vim-colors'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'ervandew/supertab'
 Plugin 'terryma/vim-expand-region'
+Plugin 'sjl/gundo.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'vim-scripts/buftabs'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -39,9 +35,11 @@ nnoremap <SPACE> <Nop>
 
 " Color Settings
 " ==============
-color Tomorrow-Night 
-set t_Co=256
+syntax enable
 set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
 
 " General Settings
 " ================
@@ -61,7 +59,7 @@ let g:bufferline_echo=0
 
 "No fold for you stupid php <PIV>!
 set nofoldenable
-let g:DisableAutoPHPFolding = 1
+autocmd Syntax php normal zR
 
 " Formating Options
 " =================
@@ -79,8 +77,8 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 " Custom keybinds
 " ===============
 
-:nnoremap <leader>ev :split ~/.vim/vimrc<CR>
-:nnoremap <leader>sv :source ~/.vim/vimrc<CR>
+:nnoremap <leader>ev :vsplit ~/.vim/vimrc<CR>
+:nnoremap <leader>sv :source ~/.vimrc<CR>
 
 :inoremap jk <esc>
 :inoremap <esc> <NOP>
@@ -88,6 +86,13 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 :noremap <Down> <NOP>
 :noremap <Left> <NOP>
 :noremap <Right> <NOP>
+
+:nnoremap <silent> [b :bprevious<CR> 
+:nnoremap <silent> ]b :bnext<CR> 
+:nnoremap <silent> [B :bfirst<CR> 
+:nnoremap <silent> ]B :blast<CR>
+
+:nnoremap <leader>xs :let @/ = ""<CR>
 
 "Select the word under the cursor
 :noremap <space> viw
@@ -118,8 +123,9 @@ au FileType javascript setl sw=2 sts=2 et
 au FileType json setl sw=2 sts=2 et
 au FileType python setl sw=4 sts=4 et
 au FileType php setl sw=4 sts=4 et
+au FileType scss setl sw=2 sts=2 et
 
-let g:DisableAutoPHPFolding = 0
+let g:DisableAutoPHPFolding = 1
 let g:PIVAutoClose = 0
 
 "Search settings
@@ -128,6 +134,7 @@ highlight clear LineNr
 set hlsearch
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
+set incsearch
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 "Sessions
@@ -173,12 +180,12 @@ let g:indent_guides_enable_on_vim_startup = 0
 let g:vdebug_options = {
     \ 'break_on_open': 1,
     \ 'port': '9001',
-    \ 'path_maps': {"/clients/sites/dev/symfony": "/Users/ryan/Code/DIW-web/symfony"},
+    \ 'path_maps': {"/clients/sites/dev/symfony": "/Users/brady/projects/DIW-web/symfony"},
     \ 'server': ''
     \}
 
 "NERDTree
-map <C-e> <plug>NERDTreeTabsToggle<CR>
+map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 map <leader>ms :mksession ~/.session.vim<CR>
