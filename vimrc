@@ -47,7 +47,7 @@ hi SpellBad cterm=underline
 
 " General Settings
 " ================
-"
+
 "Suck it Vimophiles
 :set mouse=a
 
@@ -58,9 +58,6 @@ set number
 set history=1000
 set nospell
 set clipboard=unnamed
-
-
-
 
 "Get rid of annoying Press Enter or type command to continue...
 let g:bufferline_echo=0
@@ -221,7 +218,6 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-
 let g:autoclose_vim_commentmode = 1
 let g:indent_guides_enable_on_vim_startup = 0
 let g:vdebug_options = {
@@ -260,7 +256,6 @@ endif
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>o :CtrlP<CR>
 
-
 "Expand Region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -274,7 +269,6 @@ autocmd InsertLeave * :set relativenumber
 
 "CtrlP
 let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-
 
 if has('statusline')
     set laststatus=2
