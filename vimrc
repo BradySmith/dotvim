@@ -4,7 +4,6 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'stephpy/vim-php-cs-fixer'
@@ -25,8 +24,8 @@ Plugin 'ervandew/supertab'
 Plugin 'terryma/vim-expand-region'
 Plugin 'sjl/gundo.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'vim-scripts/buftabs'
+Plugin 'scwood/vim-hybrid'
+Plugin 'romainl/Apprentice'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -39,9 +38,8 @@ nnoremap <SPACE> <Nop>
 
 " Color Scheme.
 " ============
-let g:jellybeans_background_color_256 = 234
-colorscheme jellybeans
-"hi Search term=reverse cterm=reverse gui=reverse ctermfg=109
+colorscheme hybrid
+
 highlight clear SignColumn
 highlight clear LineNr
 hi clear SpellBad
