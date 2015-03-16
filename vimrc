@@ -38,6 +38,7 @@ nnoremap <SPACE> <Nop>
 
 " Color Scheme.
 " ============
+let g:hybrid_use_Xresources = 1
 colorscheme hybrid
 
 highlight clear SignColumn
