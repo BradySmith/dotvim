@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdtree'
@@ -199,7 +198,7 @@ endfunction
 " Airline
 let g:bufferline_echo = 0
 let g:airline_section_c = '%f'
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
