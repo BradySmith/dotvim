@@ -25,6 +25,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scwood/vim-hybrid'
 Plugin 'romainl/Apprentice'
+Plugin '2072/PHP-Indenting-for-VIm'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,6 +45,7 @@ highlight clear SignColumn
 highlight clear LineNr
 hi clear SpellBad
 hi SpellBad cterm=underline
+autocmd BufEnter * :syntax sync fromstart
 
 " General Settings
 " ================
@@ -65,6 +67,10 @@ let g:bufferline_echo=0
 "No fold for you stupid php <PIV>!
 set nofoldenable
 autocmd Syntax php normal zR
+
+"Set list characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
 
 " Formating Options
 " =================
@@ -117,6 +123,7 @@ noremap <c-u> viwU
 :noremap <leader>a @
 :noremap <leader>w :w<CR>
 nmap <Leader><Leader> V
+:noremap <leader>bd :Kwbd<CR>
 
 nnoremap <silent><leader>ccc :call PhpCsFixerFixFile()<CR>
 
@@ -142,7 +149,6 @@ set hlsearch
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set incsearch
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 "Sessions
 set ssop-=options    " do not store global and local values in a session
@@ -195,6 +201,9 @@ endfunction
 " Plugin Specific Stuff
 " =====================
 
+" Ack
+noremap <Leader>a :Ack <cword><cr>
+
 " Airline
 let g:bufferline_echo = 0
 let g:airline_section_c = '%f'
@@ -218,6 +227,7 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
+let g:vim_json_syntax_conceal = 0
 let g:autoclose_vim_commentmode = 1
 let g:indent_guides_enable_on_vim_startup = 0
 let g:vdebug_options = {
@@ -245,11 +255,9 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 if isdirectory(argv(0))
     bd
     autocmd vimenter * exe "cd" argv(0)
-    autocmd VimEnter * NERDTree
 elseif empty(argv(0))
     bd
     autocmd vimenter * exe "cd ."
-    autocmd VimEnter * NERDTree
 endif
 
 "Gundo
@@ -264,8 +272,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 "Set it up so that supertab and snipmate work together
 let g:SuperTabDefaultCompletionType = "context"
 let g:closetag_html_style=1
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
 
 "CtrlP
 let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
@@ -342,5 +348,8 @@ function s:Kwbd(kwbdStage)
   endif
 endfunction
 
+if filereadable(".vim.custom")
+    so .vim.custom
+endif
+
 command! Kwbd call s:Kwbd(1)
-nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
