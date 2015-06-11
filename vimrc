@@ -318,8 +318,6 @@ function! BradyFlip()
 
         let i += 1
     endwhile
-
-
 endfunction
 
 map <leader>f :call BradyFlip()<cr>
