@@ -290,8 +290,42 @@ if has('statusline')
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
+function! BradyFlip()
+    let wordUnderCursor = expand("<cword>")
+    let pairs = ["TRUE", "FALSE", "true", "false", "True", "False", "Good", "Bad", "0", "1", "+", "-"]
+    let i = 0
+
+    while i < len(pairs)
+        let queryWord = get(pairs, i) 
+        
+        if wordUnderCursor ==# queryWord
+            let save_cursor = getpos(".")
+
+            if (i % 2 == 0)
+                let targetWord = get(pairs, i+1)
+            else
+                let targetWord = get(pairs, i-1)
+            endif
+
+            put =targetWord
+            normal diw
+            call setpos('.', save_cursor)
+            normal viwp
+            normal 
+            normal jdd
+            call setpos('.', save_cursor)
+        endif
+
+        let i += 1
+    endwhile
+
+
+endfunction
+
+map <leader>f :call BradyFlip()<cr>
+
 "delete the buffer; keep windows; create a scratch buffer if no buffers left
-function s:Kwbd(kwbdStage)
+function! s:Kwbd(kwbdStage)
   if(a:kwbdStage == 1)
     if(!buflisted(winbufnr(0)))
       bd!
