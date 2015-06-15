@@ -184,6 +184,7 @@ set undodir=~/.vim-undo//
 :ca X x
 :ca W w
 :iabbrev teh the
+:iabbrev bash! #!/bin/bash
 
 " Cleans up trailing whitespace.
 function! StripTrailingWhitespace()
