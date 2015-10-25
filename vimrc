@@ -26,6 +26,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scwood/vim-hybrid'
 Plugin 'romainl/Apprentice'
 Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'fatih/vim-go'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
